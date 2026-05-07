@@ -475,7 +475,24 @@
 ## 4. User Interface prototype
 
 ### 4.1. Screen Layout
-(이미지 및 설명 입력)
+#### 4.1.1 Database 생성
+  <img width="473" height="493" alt="Image" src="https://github.com/user-attachments/assets/d83b8135-5588-4ae2-8ffc-2b747d8baf1c" />
+
+  <img width="410" height="518" alt="Image" src="https://github.com/user-attachments/assets/dc58202c-528b-4653-972f-f305696ea26e" />
+
+  <img width="410" height="518" alt="Image" src="https://github.com/user-attachments/assets/ee1d274f-9879-4ffa-8fab-45c6887093ce" />
+  <br> 처음 프로그램을 실행하고 데이터베이스를 생성하기 위해서 보이는 창이다. 데이터베이스 열기 버튼을 클릭하면 기존에 생성된 데이터베이스 파일의 경로를 선택할 수 있고 마스터 비밀번호 입력 시 성공적으로 엔트리 목록을 볼 수 있다. 만약 데이터베이스 생성 버튼을 누르면 다음 창으로 넘어간다. DB 이름과 DB 저장 경로 마스터 비밀번호를 설정할 수 있게 된다. 만약 무작위 비밀번호 생성 버튼을 클릭한다면 사진처럼 사용자가 설정한 조건에 따라서 무작위 비밀번호가 생성되고 복사하거나 바로 적용할 수 있게 된다.
+  
+
+<img width="700" height="535" alt="Image" src="https://github.com/user-attachments/assets/a6adc780-ff8c-4ef5-a14e-48c241b9a8d4" />
+
+<img width="700" height="535" alt="Image" src="https://github.com/user-attachments/assets/6295210d-ab62-4b53-8247-7ead8deac4f5" />
+
+<img width="700" height="535" alt="Image" src="https://github.com/user-attachments/assets/f967a10c-4bad-4b0c-b245-9705d453169d" />
+
+<img width="700" height="534" alt="Image" src="https://github.com/user-attachments/assets/a22afe06-90c5-488f-8722-e592cde7fc49" />
+
+<img width="700" height="534" alt="Image" src="https://github.com/user-attachments/assets/d6efc8c1-9a44-42f3-a12c-8d5dce2e9c25" />
 
 ---
 
@@ -494,3 +511,6 @@
 ## 6. References
 - [starUML](https://staruml.io/)
 - [UML specification](https://www.omg.org/spec/UML/2.5.1/About-UML)
+- [UI 프로토타입 ScenceBuilder Tool](https://gluonhq.com/products/scene-builder/)
+- [UI Figma Tool](https://www.figma.com/)
+- [Java Swing](https://wikidocs.net/208032)
