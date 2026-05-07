@@ -477,9 +477,11 @@
 ### 4.1. Screen Layout
 
 #### 4.1.1. Create Database 
-  <img width="400" height="450" alt="Image" src="https://github.com/user-attachments/assets/d83b8135-5588-4ae2-8ffc-2b747d8baf1c" />
-  <img width="400" height="450" alt="Image" src="https://github.com/user-attachments/assets/dc58202c-528b-4653-972f-f305696ea26e" />
-  <img width="400" height="450" alt="Image" src="https://github.com/user-attachments/assets/ee1d274f-9879-4ffa-8fab-45c6887093ce" />
+
+  <img width="400" height="450" alt="Image" src="https://github.com/user-attachments/assets/d83b8135-5588-4ae2-8ffc-2b747d8baf1c" /><br>
+  <img width="400" height="450" alt="Image" src="https://github.com/user-attachments/assets/dc58202c-528b-4653-972f-f305696ea26e" /><br>
+  <img width="400" height="450" alt="Image" src="https://github.com/user-attachments/assets/ee1d274f-9879-4ffa-8fab-45c6887093ce" /><br>
+  
   <br> 처음 프로그램을 실행하고 데이터베이스를 생성하기 위해서 보이는 창이다. 데이터베이스 열기 버튼을 클릭하면 기존에 생성된 데이터베이스 파일의 경로를 선택할 수 있고 마스터 비밀번호 입력 시 성공적으로 엔트리 목록을 볼 수 있다. 만약 데이터베이스 생성 버튼을 누르면 다음 창으로 넘어간다. DB 이름과 DB 저장 경로 마스터 비밀번호를 설정할 수 있게 된다. 만약 무작위 비밀번호 생성 버튼을 클릭한다면 사진처럼 사용자가 설정한 조건에 따라서 무작위 비밀번호가 생성되고 복사하거나 바로 적용할 수 있게 된다.
 
 #### 4.1.2. Show Entries
