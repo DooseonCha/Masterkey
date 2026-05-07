@@ -368,11 +368,11 @@
 |1|Entries목록 GUI창에서 비밀번호 변경 주기 설정 버튼을 클릭한다.|
 |2|시스템이 비밀번호 변경 주기 설정을 할 수 있는 창으로 이동한다.|
 |3|사용자가 비밀번호 변경 주기 설정을 하고 저장한다.|
-|4|사용자가 기능을 활성화 하기 위해서 알람 아이콘을 클릭한다.|
+|4|사용자가 기능을 활성화 하기 위해서 알림 설정 버튼을 클릭한다.|
 |5|사용자가 설정한 변경 주기를 넘어간 Entries에 대해 붉은색으로 표시하고 기능은 종료된다.|
 |**EXTENSION SCENARIOS**|**Contents**|
 |Step |Branching Action|
-|4|4a. 변경 주기를 설정한 후 이 기능을 해제하기 위해 아이콘을 다시 클릭한다.<br>&nbsp;&nbsp;&nbsp; 4a1. 기능이 해제되었음을 사용자에게 알리기 위해 아이콘의 색을 흑백으로 바꾼다.<br>&nbsp;&nbsp;&nbsp; 4a2. 알람 기능이 꺼진 Entries 목록 화면으로 돌아간다. (Use case #11 - 2)<br><br>4b. 알람 기능을 해제하고 다시 이 기능을 사용하기 위해 아이콘을 다시 클릭한다.<br>&nbsp;&nbsp;&nbsp; 4b1. 기능이 실행 되었음을 알리기 위해 아이콘의 색을 노란색으로 바꾼다.<br>&nbsp;&nbsp;&nbsp; 4b2. 알람이 적용된 화면을 보여준다. (Use case #10 - 5)<br>&nbsp;&nbsp;&nbsp;<br>4c. 사용자가 주기를 설정하지 않고 바로 아이콘 버튼을 클릭한다.<br>&nbsp;&nbsp;&nbsp; 4c1. 시스템이 주기를 30일을 기본값으로 설정한다.<br>&nbsp;&nbsp;&nbsp; 4c2. 사용자가 최초로 주기를 설정하지 않아도 기본값인 30일을 기준으로 기능을 활성화 해준다.
+|4|4a. 변경 주기를 설정한 후 이 기능을 해제하기 위해 알림 설정 버튼을 다시 클릭한다.<br>&nbsp;&nbsp;&nbsp; 4a1. 기능이 해제되었음을 사용자에게 알리기 위해 아이콘의 색을 흑백으로 바꾼다.<br>&nbsp;&nbsp;&nbsp; 4a2. 알람 기능이 꺼진 Entries 목록 화면으로 돌아간다. (Use case #11 - 2)<br><br>4b. 알람 기능을 해제하고 다시 이 기능을 사용하기 위해 버튼을 다시 클릭한다.<br>&nbsp;&nbsp;&nbsp; 4b1. 기능이 실행 되었음을 알리기 위해 아이콘의 색을 노란색으로 바꾼다.<br>&nbsp;&nbsp;&nbsp; 4b2. 알람이 적용된 화면을 보여준다. (Use case #10 - 5)<br>&nbsp;&nbsp;&nbsp;<br>4c. 사용자가 주기를 설정하지 않고 바로 알림 활성화 버튼을 클릭한다.<br>&nbsp;&nbsp;&nbsp; 4c1. 시스템이 주기를 30일을 기본값으로 설정한다.<br>&nbsp;&nbsp;&nbsp; 4c2. 사용자가 최초로 주기를 설정하지 않아도 기본값인 30일을 기준으로 기능을 활성화 해준다.
 |**RELATED INFORMATION**|**Contents**|
 |Performance|NONE|
 |Frequency |NONE|
@@ -475,24 +475,31 @@
 ## 4. User Interface prototype
 
 ### 4.1. Screen Layout
-#### 4.1.1 Database 생성
-  <img width="473" height="493" alt="Image" src="https://github.com/user-attachments/assets/d83b8135-5588-4ae2-8ffc-2b747d8baf1c" />
 
-  <img width="410" height="518" alt="Image" src="https://github.com/user-attachments/assets/dc58202c-528b-4653-972f-f305696ea26e" />
-
-  <img width="410" height="518" alt="Image" src="https://github.com/user-attachments/assets/ee1d274f-9879-4ffa-8fab-45c6887093ce" />
+#### 4.1.1. Create Database 
+  <img width="400" height="450" alt="Image" src="https://github.com/user-attachments/assets/d83b8135-5588-4ae2-8ffc-2b747d8baf1c" />
+  <img width="400" height="450" alt="Image" src="https://github.com/user-attachments/assets/dc58202c-528b-4653-972f-f305696ea26e" />
+  <img width="400" height="450" alt="Image" src="https://github.com/user-attachments/assets/ee1d274f-9879-4ffa-8fab-45c6887093ce" />
   <br> 처음 프로그램을 실행하고 데이터베이스를 생성하기 위해서 보이는 창이다. 데이터베이스 열기 버튼을 클릭하면 기존에 생성된 데이터베이스 파일의 경로를 선택할 수 있고 마스터 비밀번호 입력 시 성공적으로 엔트리 목록을 볼 수 있다. 만약 데이터베이스 생성 버튼을 누르면 다음 창으로 넘어간다. DB 이름과 DB 저장 경로 마스터 비밀번호를 설정할 수 있게 된다. 만약 무작위 비밀번호 생성 버튼을 클릭한다면 사진처럼 사용자가 설정한 조건에 따라서 무작위 비밀번호가 생성되고 복사하거나 바로 적용할 수 있게 된다.
-  
 
-<img width="700" height="535" alt="Image" src="https://github.com/user-attachments/assets/a6adc780-ff8c-4ef5-a14e-48c241b9a8d4" />
+#### 4.1.2. Show Entries
+ <img width="700" height="534" alt="Image" src="https://github.com/user-attachments/assets/d6efc8c1-9a44-42f3-a12c-8d5dce2e9c25" /><br>
+ 데이터베이스를 만들고 데이터베이스를 열면 위의 사진과 같은 entry들의 목록을 볼 수 있다. 붉은색으로 칠해진 목록은 비밀번호 변경 주기 알람이 적용된 모습이다. 알람이 활성화되어 있다는 것은 노란색 아이콘을 통해서 알 수 있다.
 
-<img width="700" height="535" alt="Image" src="https://github.com/user-attachments/assets/6295210d-ab62-4b53-8247-7ead8deac4f5" />
 
-<img width="700" height="535" alt="Image" src="https://github.com/user-attachments/assets/f967a10c-4bad-4b0c-b245-9705d453169d" />
+#### 4.1.3. Database Backup
+ <img width="700" height="535" alt="Image" src="https://github.com/user-attachments/assets/a6adc780-ff8c-4ef5-a14e-48c241b9a8d4" />
+ <br>백업 버튼을 선택할 경우 백업 경로를 지정할 수 있도록 새로운 창이 보여진다.
 
-<img width="700" height="534" alt="Image" src="https://github.com/user-attachments/assets/a22afe06-90c5-488f-8722-e592cde7fc49" />
+#### 4.1.4. Show History
+<img width="700" height="535" alt="Image" src="https://github.com/user-attachments/assets/6295210d-ab62-4b53-8247-7ead8deac4f5" /><br> 비밀번호 변경이력을 보기 위해서는 보고 싶은 Entry를 선택하여 변경이력 버튼을 선택하면 된다. 그러면 사진과 같이 변경 날짜와 비밀번호를 볼 수 있다.
 
-<img width="700" height="534" alt="Image" src="https://github.com/user-attachments/assets/d6efc8c1-9a44-42f3-a12c-8d5dce2e9c25" />
+#### 4.1.5. Last Change Alert
+<img width="700" height="535" alt="Image" src="https://github.com/user-attachments/assets/f967a10c-4bad-4b0c-b245-9705d453169d" /><br> 비밀번호 변경 주기를 설정하거나 알람 기능을 활성화하기 위해서 알림 설정 버튼을 클릭하면 알림 설정창이 보여진다. 사진처럼 변경 주기를 사용자가 선택할 수 있고 알림을 활성화할지 비활설화할지 선택할 수 있다.
+
+#### 4.1.5. Add Entries 
+<img width="700" height="534" alt="Image" src="https://github.com/user-attachments/assets/a22afe06-90c5-488f-8722-e592cde7fc49" /><br> 엔트리 목록 화면에서 추가 버튼을 클릭하면 다음과 같은 화면을 볼 수 있다. 추가하려는 사이트 이름과 사용자 아이디 비밀번호를 저장할 수 있다. 마찬가지로 엔트리를 추가할 때 무작위 비밀번호 난수를 생성할 수 있고 그 무작위 비밀번호를 바로 적용할 수 있다.
+
 
 ---
 
