@@ -10,7 +10,7 @@
 <br>
 
 ---
-### [ Revision history ]
+## [ Revision history ]
 | Revision date | Version # | Description | Author |
 | :---: | :---: | :---: | :---: |
 | 03/09/2026 | 1.00 | First Documentation | 차두선 |
