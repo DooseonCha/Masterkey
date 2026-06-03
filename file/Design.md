@@ -51,7 +51,7 @@
 
 ## 2. Class Diagram
 본 Class Diagram에는 UI 클래스, 암호화 및 복호화 클래스, 데이터베이스 관리를 위한 알고리즘 클래스 등등의 JAVA 표준 라이브러리 및 외부 라이브러리에서 사용할 클래스는 포함하지 않았다.
-<img width="1533" height="940" alt="Image" src="https://github.com/user-attachments/assets/0d542aae-1705-44df-8f27-76f942064d8a" />
+<img width="1563" height="940" alt="Image" src="https://github.com/user-attachments/assets/5e61b824-f14b-48ac-ac23-726f396081c3" />
 <br><br>
 
 ### 1. Database
@@ -171,7 +171,6 @@
 
 | **Operation** | **Description** |
 |-|-|
-| createBackup(database: Database, backupPath: String): boolean | 전달받은 Database를 지정한 경로에 백업한다. |
 | validateBackupPath(path: String): boolean | 사용자가 지정한 백업 경로가 유효한지 검사한다. |
 | getBackupFilePath(): String | 백업 파일의 전체 경로를 반환한다. |
 
@@ -214,10 +213,18 @@
 
 
 ## 3. Sequence Diagram
-**Use case name**
-<!-- 시퀀스 다이어그램 이미지 삽입 -->
 
-**Description**
+### 1. Create Database
+### 2. Generate Password
+### 3. Open Database
+### 4. Add Entries in DB
+### 5. Delete Entries in DB
+### 6. Show Entries
+### 7. Copy Password
+### 8. Autofill Password
+### 9. Show Password History
+### 10. Last Change Alert
+### 11. Database Backup
 
 ---
 
