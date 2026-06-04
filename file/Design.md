@@ -279,15 +279,9 @@
 
 ## 4. State Machine Diagram
 
-MasterKey 시스템은 UI와의 상호작용을 기반으로 동작한다. 이에 맞춰 본 State Machine Diagram은 UI와의 상호작용을 기반으로 표현했다. 또한 State Machine Diagram을 한 번에 표현하기 복잡하다고 판단하여 4개로 나눠 따로 제시했다.
+<img width="2633" height="2422" alt="Image" src="https://github.com/user-attachments/assets/b8e23e39-7649-493a-aae7-81473ff495ad" />
+본 State Machine Diagram은 MasterKey 프로그램의 UI 화면 전환에 따른 상태 변화를 나타낸다.초기 상태는 Start Screen이다. 사용자가 Create Database를 선택하면 Create Database Screen으로 이동하여 새 데이터베이스 정보를 입력하고, Create를 실행하면 Main Window로 이동한다. 사용자가 기존 데이터베이스를 열 경우에는 Open Database를 선택하여 Unlock Screen으로 이동하고, 마스터 비밀번호를 입력한 뒤 Open을 실행하면 Main Window로 이동한다. Main Window는 데이터베이스가 열린 상태이다. 기본 상태는 Entry List View이며, 이 화면에서 저장된 Entry 목록을 확인한다. 사용자는 여기서 Entry Menu, Password Menu, Security / Backup Menu로 이동하여 각각 Entry 관리, 비밀번호 관리, 보안 및 백업 기능을 수행할 수 있다. Entry Tools에서는 Entry 추가, 삭제, 비밀번호 이력 조회를 수행한다. Password Tools에서는 비밀번호 생성, 복사, 자동 입력 기능을 수행한다. Security and Backup Tools에서는 비밀번호 변경 주기 알림 확인, 데이터베이스 백업, 자동 백업 설정을 수행한다. 각 기능이 끝나면 다시 Entry List View로 돌아간다. 사용자가 Lock을 선택하면 데이터베이스가 잠기고 Unlock Screen으로 이동한다. Close File을 선택하면 현재 데이터베이스 파일을 닫고 Start Screen으로 돌아간다. Exit을 선택하면 프로그램은 종료된다.
 
-### Entry Tools State
-
-### Password Tools State
-
-### Security and Backup Tools State
-
-### Main UI State
 
 ## 5. Implementation Requirements
 
