@@ -295,18 +295,17 @@ MasterKey 시스템은 UI와의 상호작용을 기반으로 동작한다. 이�
 
 | Component | Requirement |
 |------------|-------------|
-| CPU | |
-| RAM | |
-| Storage | |
+| CPU | Intel i3+|
+| RAM |4GB+ |
+| Storage |15GB+ |
 
 ### Software Requirements
 
 | Component | Requirement |
 |------------|-------------|
-| Operating System | |
-| Programming Language | |
-| Framework | |
-| Database | |
+| Operating System | windows 10/11 |
+| Programming Language | JAVA|
+| Framework |JAVA Swing |
 
 ---
 
