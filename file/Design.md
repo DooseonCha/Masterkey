@@ -279,6 +279,16 @@
 
 ## 4. State Machine Diagram
 
+MasterKey 시스템은 UI와의 상호작용을 기반으로 동작한다. 이에 맞춰 본 State Machine Diagram은 UI와의 상호작용을 기반으로 표현했다. 또한 State Machine Diagram을 한 번에 표현하기 복잡하다고 판단하여 4개로 나눠 따로 제시했다.
+
+### Entry Tools State
+
+### Password Tools State
+
+### Security and Backup Tools State
+
+### Main UI State
+
 ## 5. Implementation Requirements
 
 ### Hardware Requirements
