@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'masterkey'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+application {
+    mainClass = 'masterkey.Main'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'masterkey.Main'
+    }
+}
