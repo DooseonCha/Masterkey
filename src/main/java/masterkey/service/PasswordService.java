@@ -20,7 +20,7 @@ public class PasswordService {
         );
 
         if (!policy.validatePolicy()) {
-            throw new IllegalArgumentException("Invalid password policy.");
+            throw new IllegalArgumentException("비밀번호 생성 조건이 올바르지 않습니다.");
         }
 
         return Password.generatePassword(policy).getPasswordValue();
@@ -34,33 +34,33 @@ public class PasswordService {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
     }
 
-    public void autofill(String userId, String password) {
-        copyToClipboard(userId + "\t" + password);
+    public void prepareAutofill(String userId, String password) {
+        String value = (userId == null ? "" : userId) + "\t" + (password == null ? "" : password);
+        copyToClipboard(value);
+    }
 
+    public void pasteFromClipboard() {
         try {
             Robot robot = new Robot();
-            robot.delay(300);
+            robot.setAutoDelay(50);
 
-            typeText(robot, userId);
-            robot.keyPress(KeyEvent.VK_TAB);
-            robot.keyRelease(KeyEvent.VK_TAB);
-            typeText(robot, password);
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_V);
+            robot.keyRelease(KeyEvent.VK_V);
+            robot.keyRelease(KeyEvent.VK_CONTROL);
         } catch (AWTException e) {
-            throw new IllegalStateException("Autofill is not available in this environment.", e);
+            throw new IllegalStateException("현재 환경에서는 자동 채우기를 사용할 수 없습니다.", e);
         }
     }
 
-    private void typeText(Robot robot, String text) {
-        if (text == null) {
-            return;
+    public void autofill(String userId, String password) {
+        prepareAutofill(userId, password);
+        try {
+            Robot robot = new Robot();
+            robot.delay(3000);
+        } catch (AWTException e) {
+            throw new IllegalStateException("현재 환경에서는 자동 채우기를 사용할 수 없습니다.", e);
         }
-
-        copyToClipboard(text);
-
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.delay(100);
+        pasteFromClipboard();
     }
 }

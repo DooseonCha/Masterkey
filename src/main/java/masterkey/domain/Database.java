@@ -1,8 +1,11 @@
 package masterkey.domain;
 
+import masterkey.storage.CryptoUtil;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Database implements Serializable {
@@ -19,6 +22,10 @@ public class Database implements Serializable {
     private List<Backup> backups;
     private UserSettings userSettings;
 
+    private byte[] recoverySalt;
+    private byte[] recoveryIv;
+    private byte[] encryptedMasterPasswordByRecovery;
+
     public Database(String databaseName, String filePath, String masterPassword) {
         this.databaseName = databaseName == null ? "MasterKey Database" : databaseName;
         this.filePath = filePath == null ? "" : filePath;
@@ -33,10 +40,10 @@ public class Database implements Serializable {
 
     public static Database createDatabase(String databaseName, String filePath, String masterPassword) {
         if (databaseName == null || databaseName.isBlank()) {
-            throw new IllegalArgumentException("Database name is required.");
+            throw new IllegalArgumentException("데이터베이스 이름을 입력해야 합니다.");
         }
         if (masterPassword == null || masterPassword.length() < 4) {
-            throw new IllegalArgumentException("Master password must be at least 4 characters.");
+            throw new IllegalArgumentException("마스터 비밀번호는 4자 이상이어야 합니다.");
         }
         return new Database(databaseName, filePath, masterPassword);
     }
@@ -105,6 +112,49 @@ public class Database implements Serializable {
         backups.add(backup);
         touch();
         return backup;
+    }
+
+
+    public void configureRecoveryKey(String recoveryKey, String masterPassword) {
+        if (recoveryKey == null || recoveryKey.isBlank()) {
+            this.recoverySalt = null;
+            this.recoveryIv = null;
+            this.encryptedMasterPasswordByRecovery = null;
+            return;
+        }
+
+        this.recoverySalt = CryptoUtil.generateSalt();
+        this.recoveryIv = CryptoUtil.generateIv();
+        this.encryptedMasterPasswordByRecovery = CryptoUtil.encryptString(
+                masterPassword,
+                recoveryKey,
+                recoverySalt,
+                recoveryIv
+        );
+        touch();
+    }
+
+    public boolean hasRecoveryKey() {
+        return recoverySalt != null
+                && recoveryIv != null
+                && encryptedMasterPasswordByRecovery != null
+                && recoverySalt.length > 0
+                && recoveryIv.length > 0
+                && encryptedMasterPasswordByRecovery.length > 0;
+    }
+
+    public byte[] getRecoverySalt() {
+        return recoverySalt == null ? new byte[0] : Arrays.copyOf(recoverySalt, recoverySalt.length);
+    }
+
+    public byte[] getRecoveryIv() {
+        return recoveryIv == null ? new byte[0] : Arrays.copyOf(recoveryIv, recoveryIv.length);
+    }
+
+    public byte[] getEncryptedMasterPasswordByRecovery() {
+        return encryptedMasterPasswordByRecovery == null
+                ? new byte[0]
+                : Arrays.copyOf(encryptedMasterPasswordByRecovery, encryptedMasterPasswordByRecovery.length);
     }
 
     private void touch() {

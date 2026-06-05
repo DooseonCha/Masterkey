@@ -39,7 +39,7 @@ public class AlertService {
     public void updateAlertSettings(boolean enabled, int periodDays) {
         Database database = databaseService.getCurrentDatabase();
         if (database == null) {
-            throw new IllegalStateException("Database is not opened.");
+            throw new IllegalStateException("데이터베이스가 열려 있지 않습니다.");
         }
 
         UserSettings settings = database.getUserSettings();
@@ -57,7 +57,7 @@ public class AlertService {
     public void updateAutoBackup(boolean enabled) {
         Database database = databaseService.getCurrentDatabase();
         if (database == null) {
-            throw new IllegalStateException("Database is not opened.");
+            throw new IllegalStateException("데이터베이스가 열려 있지 않습니다.");
         }
 
         if (enabled) {

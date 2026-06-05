@@ -20,17 +20,35 @@ public class EntryService {
         Entry entry = new Entry(siteName, siteUrl, userId, new Password(passwordValue));
         Database database = databaseService.getCurrentDatabase();
         database.addEntry(entry);
-        databaseService.saveDatabase();
+        databaseService.saveDatabaseAndAutoBackup();
         return entry;
+    }
+
+    public void updateEntry(String entryId, String siteName, String siteUrl, String userId, String passwordValue) {
+        validateEntry(siteName, userId, passwordValue);
+
+        Entry entry = findEntry(entryId);
+        if (entry == null) {
+            throw new IllegalArgumentException("엔트리를 찾을 수 없습니다.");
+        }
+
+        entry.updateEntry(siteName, siteUrl, userId);
+
+        String currentPassword = entry.getPassword() == null ? "" : entry.getPassword().getPasswordValue();
+        if (!currentPassword.equals(passwordValue)) {
+            entry.changePassword(new Password(passwordValue));
+        }
+
+        databaseService.saveDatabaseAndAutoBackup();
     }
 
     public void deleteEntry(String entryId) {
         Database database = databaseService.getCurrentDatabase();
         boolean deleted = database.deleteEntry(entryId);
         if (!deleted) {
-            throw new IllegalArgumentException("Entry not found.");
+            throw new IllegalArgumentException("엔트리를 찾을 수 없습니다.");
         }
-        databaseService.saveDatabase();
+        databaseService.saveDatabaseAndAutoBackup();
     }
 
     public List<Entry> getEntries() {
@@ -48,13 +66,13 @@ public class EntryService {
 
     private void validateEntry(String siteName, String userId, String passwordValue) {
         if (siteName == null || siteName.isBlank()) {
-            throw new IllegalArgumentException("Site name is required.");
+            throw new IllegalArgumentException("사이트 이름을 입력해야 합니다.");
         }
         if (userId == null || userId.isBlank()) {
-            throw new IllegalArgumentException("User ID is required.");
+            throw new IllegalArgumentException("사용자 ID를 입력해야 합니다.");
         }
         if (passwordValue == null || passwordValue.isBlank()) {
-            throw new IllegalArgumentException("Password is required.");
+            throw new IllegalArgumentException("비밀번호를 입력해야 합니다.");
         }
     }
 }

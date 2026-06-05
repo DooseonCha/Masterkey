@@ -7,11 +7,16 @@ import masterkey.service.DatabaseService;
 import masterkey.service.EntryService;
 import masterkey.service.PasswordService;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
+import java.net.URL;
 
 public class MainFrame extends JFrame {
     private final CardLayout cardLayout;
@@ -31,6 +36,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super("MasterKey");
+        setApplicationIcon();
 
         this.databaseService = new DatabaseService();
         this.entryService = new EntryService(databaseService);
@@ -50,14 +56,38 @@ public class MainFrame extends JFrame {
         rootPanel.add(entryListPanel, "entries");
 
         setContentPane(rootPanel);
-        setSize(980, 640);
+        setMinimumSize(new Dimension(1250, 720));
+        setSize(1250, 720);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                handleWindowClosing();
+            }
+        });
         showStart();
+    }
+
+    private void setApplicationIcon() {
+        URL iconUrl = getClass().getResource("/icon.png");
+        if (iconUrl != null) {
+            setIconImage(new ImageIcon(iconUrl).getImage());
+        }
+    }
+
+    private void handleWindowClosing() {
+        if (databaseService.hasOpenedDatabase()) {
+            closeFile();
+            return;
+        }
+        dispose();
+        System.exit(0);
     }
 
     public void showStart() {
         selectedDatabaseFile = null;
+        setTitle("MasterKey");
         cardLayout.show(rootPanel, "start");
     }
 
@@ -67,21 +97,25 @@ public class MainFrame extends JFrame {
         cardLayout.show(rootPanel, "unlock");
     }
 
-    public void createDatabase(String databaseName, File file, String masterPassword) {
+    public void createDatabase(String databaseName, File file, String masterPassword, String recoveryKey) {
         try {
-            Database database = databaseService.createDatabase(databaseName, file, masterPassword);
+            Database database = databaseService.createDatabase(databaseName, file, masterPassword, recoveryKey);
             entryListPanel.refreshTable();
             setTitle("MasterKey - " + database.getDatabaseName());
             cardLayout.show(rootPanel, "entries");
         } catch (Exception e) {
-            showError("Create Database Failed", e.getMessage());
+            showError("데이터베이스 생성 실패", e.getMessage());
         }
     }
 
     public void openDatabase(String masterPassword) {
         try {
             if (selectedDatabaseFile == null) {
-                throw new IllegalStateException("Database file is not selected.");
+                throw new IllegalStateException("데이터베이스 파일이 선택되지 않았습니다.");
+            }
+            if (masterPassword == null || masterPassword.length() < 4) {
+                showError("비밀번호 오류", "마스터 비밀번호는 4자 이상이어야 합니다.");
+                return;
             }
 
             Database database = databaseService.openDatabase(selectedDatabaseFile, masterPassword);
@@ -89,7 +123,26 @@ public class MainFrame extends JFrame {
             setTitle("MasterKey - " + database.getDatabaseName());
             cardLayout.show(rootPanel, "entries");
         } catch (Exception e) {
-            showError("Open Database Failed", "Master password is incorrect or file is invalid.");
+            showError("데이터베이스 열기 실패", "마스터 비밀번호가 틀렸거나 파일이 올바르지 않습니다.");
+        }
+    }
+
+    public void openDatabaseWithRecoveryKey(String recoveryKey) {
+        try {
+            if (selectedDatabaseFile == null) {
+                throw new IllegalStateException("데이터베이스 파일이 선택되지 않았습니다.");
+            }
+            if (recoveryKey == null || recoveryKey.isBlank()) {
+                showError("복구키 오류", "복구키를 입력해야 합니다.");
+                return;
+            }
+
+            Database database = databaseService.openDatabaseWithRecoveryKey(selectedDatabaseFile, recoveryKey.trim());
+            entryListPanel.refreshTable();
+            setTitle("MasterKey - " + database.getDatabaseName());
+            cardLayout.show(rootPanel, "entries");
+        } catch (Exception e) {
+            showError("복구 실패", "복구키가 올바르지 않거나 복구키가 설정되지 않은 파일입니다.");
         }
     }
 
