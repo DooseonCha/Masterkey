@@ -3,6 +3,7 @@ build/
 out/
 .idea/
 *.iml
+src/main/resources/META-INF/
 
 *.log
 *.tmp
